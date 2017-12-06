@@ -1,9 +1,14 @@
 package com.bankmega.traning.controller;
 
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +26,11 @@ public class EmployeeController {
 	EmployeeService employeeService;
 	
 	@RequestMapping
-	public String index(){
+	public String index(Model model){
+		
+		List<Employee> employees = employeeService.getAllEmployee();
+		model.addAttribute("employees", employees);
+		
 		return "employee";
 	}
 	
@@ -29,9 +38,15 @@ public class EmployeeController {
 	public String save(@ModelAttribute Employee employee, RedirectAttributes redirectAttributes){
 			employeeService.save(employee);
 			redirectAttributes.
-				addFlashAttribute("message", employee.getName() +
-											" berhasil di simpan");
+				addFlashAttribute("message", employee.getName() +										" berhasil di simpan");
 		return "redirect:/employee";
 	}
+	
+	@RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	public void delete(@PathVariable int id){
+		employeeService.delete(id);
+	}
+	
 	
 }
