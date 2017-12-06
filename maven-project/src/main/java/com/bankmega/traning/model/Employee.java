@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.web.bind.annotation.MatrixVariable;
 
@@ -23,6 +25,7 @@ public class Employee {
 	@Column(unique=true)
 	private String email;
 	private Double salary;
+	@Temporal(TemporalType.DATE)
 	@Column(name="birth_date")
 	private Date birthDate;
 	

@@ -6,11 +6,12 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.bankmega.traning.model.Employee;
 
-@Service
+@Component
 public class InitDB {
 
 	@Autowired
@@ -25,9 +26,7 @@ public class InitDB {
 		employee.setSalary(5000.0);
 		employee.setBirthDate(new Date());
 		
-		employeeService.save(employee);
-		this.index();
+		//employeeService.save(employee);
 	}
 	
-	public void index(){}
 }

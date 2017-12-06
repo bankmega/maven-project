@@ -14,6 +14,7 @@ import com.bankmega.traning.model.Employee;
 public class EmployeeService {
 	@Autowired
 	EmployeeDao employeeDao;
+	
 	public void save(Employee employee){
 		employeeDao.save(employee);
 	}
