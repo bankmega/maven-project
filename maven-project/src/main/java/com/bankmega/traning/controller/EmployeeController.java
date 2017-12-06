@@ -29,7 +29,7 @@ public class EmployeeController {
 	public String save(@ModelAttribute Employee employee, RedirectAttributes redirectAttributes){
 			employeeService.save(employee);
 			redirectAttributes.
-				addAttribute("message", employee.getName() +
+				addFlashAttribute("message", employee.getName() +
 											" berhasil di simpan");
 		return "redirect:/employee";
 	}
