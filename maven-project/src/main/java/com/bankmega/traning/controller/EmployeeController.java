@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -48,5 +49,18 @@ public class EmployeeController {
 		employeeService.delete(id);
 	}
 	
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public Employee getEmployeeById(@PathVariable int id){
+		Employee employee = employeeService.getEmployeeById(id);
+		
+		return employee;
+	}
 	
+	@RequestMapping(value="/example", method=RequestMethod.GET)
+	@ResponseBody
+	public String getExample(@RequestParam("data") String data){
+		System.out.println(""+ data);
+		return "value:  "+ data;
+	}
 }

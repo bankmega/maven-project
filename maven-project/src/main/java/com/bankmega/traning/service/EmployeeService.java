@@ -31,5 +31,10 @@ public class EmployeeService {
 		employeeDao.delete(employee);
 	}
 
+	public Employee getEmployeeById(int id) {
+		// TODO Auto-generated method stub
+		return employeeDao.getEmployeeById(id);
+	}
+
 	
 }

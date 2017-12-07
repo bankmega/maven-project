@@ -13,4 +13,6 @@ public interface EmployeeDao {
 
 	public void delete(Employee employee);
 
+	public Employee getEmployeeById(int id);
+
 }

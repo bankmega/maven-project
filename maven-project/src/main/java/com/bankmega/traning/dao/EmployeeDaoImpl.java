@@ -41,7 +41,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		session.flush();
 	}
 
-	
-
-
+	public Employee getEmployeeById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Employee emp where emp.id = :data";
+		
+		List<Employee> employees = 
+				session.createQuery(hql)
+					.setParameter("data", id).list(); 
+		
+		if(employees.isEmpty()){
+			return null;
+		}
+		
+		return employees.get(0);
+	}
 }

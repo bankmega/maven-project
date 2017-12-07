@@ -19,49 +19,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('.delete').on('click', function(){
-			var id = $(this).attr("id");
-			var conf = confirm("are you sure delete this ?");
-			if(conf == true){
-				jQuery.ajax({
-					url : 'employee/delete/'+ id,
-					type : 'DELETE',
-					success : function(data){
-						window.location = "employee";
-					}, error : function(data){
-						console.log(data);
-						alert('delete failed!!');
-					}
-				}); 
-			}
-			
-			return false;
-		});
 		
-		$('.update').on('click', function(){
-			var id = $(this).attr('id');
-			$.ajax({
-				url : 'employee/get/'+id,
-				type: 'GET',
-				success: function(data){
-					console.log(data);
-					$('input[name="name"]').val(data.name);
-					$('input[name="email"]').val(data.email);
-					$('input[name="id"]').val(data.id);
-					$('input[name="salary"]').val(data.salary);
-					var date = new Date(data.birthDate);
-					var myDate = date.getDate() 
-					+ "/" + (date.getMonth() + 1) 
-					+ "/" + date.getFullYear();
-					
-					$('input[name="birthDate"]').val(myDate);
-					
-				},
-				dataType: 'json'
-			});
-			
-			
-		});
 	});
 </script>
 	<div class="container">
@@ -74,25 +32,30 @@
 		<form action="employee/save" method="POST">
 			  <div class="form-group">
 			  <input type="hidden" name="id" />
-			    <label for="inputName">Name</label>
-			    <input type="text" name="name" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Enter Your Name">
+			    <label for="noPenjualan">No Penjualan</label>
+			    <input type="text" name="noPenjualan" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Nomer Penjualan">
 			    <small id="emailHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputEmail">Email</label>
-			    <input type="text" name="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter Your Email">
+			    <label for="totalPenjualan">Total Harga</label>
+			    <input type="text" name="totalPenjualan" class="form-control" id="totalPenjualan" aria-describedby="emailHelp" placeholder="Enter Your Email">
 			    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputSalary">salary</label>
-			    <input type="text" name="salary" class="form-control" id="inputSalary" aria-describedby="emailHelp" placeholder="Enter Your Salary">
+			    <label for="location">Lokasi</label>
+			    <input type="text" name="location" class="form-control" id="inputSalary" aria-describedby="emailHelp" placeholder="Enter Your location">
 			    <small id="emailHelp" class="form-text text-muted">We'll never share your salary with anyone else.</small>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputSalary">birth date</label>
-			    <input type="text" name="birthDate" class="form-control" id="inputSalary" aria-describedby="emailHelp">
-			    <small id="emailHelp" class="form-text text-muted">We'll never share your salary with anyone else.</small>
+			    <label for="location">Employee</label>
+			  	<select class="form-control" name="employee">
+			  		<c:forEach items="${employees }" var="emp">
+			  			<option value="${emp.id }"><c:out value="${emp.name }" /></option>
+			  		</c:forEach>
+			  	</select>
 			  </div>
+			  
+			  
 			  <input type="submit" class="btn btn-primary" value="Save" />
 		  </form>
 		  <hr/>
