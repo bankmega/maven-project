@@ -37,6 +37,12 @@
 			
 			return false;
 		});
+		
+		$('.update').on('click', function(){
+			var id = $(this).attr('id');
+			alert(id);
+			//$('input[name="name"]').val();
+		});
 	});
 </script>
 	<div class="container">
@@ -87,7 +93,7 @@
 				<td><c:out value="${emp.salary }"/></td>
 				<td>
 					<a class="btn btn-danger delete" id="${emp.id}" href="#">Delete</a>
-					<a class="btn btn-warning" href="#">Update</a>
+					<a class="btn btn-warning update" id="${emp.id}" href="#">Update</a>
 				</td>
 			</tr>
 		</c:forEach>
