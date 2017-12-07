@@ -19,6 +19,21 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		$('.delete').on("click", function(){
+			var id = $(this).attr("id");
+			var conf = confirm("are you sure delete ?");
+			if(conf == true){
+				$.ajax({
+					url : 'penjualan/delete/'+id,
+					type: 'DELETE',
+					success : function(data){
+						window.location = "${pageContext.request.contextPath}/penjualan";
+					}
+				});
+			}
+		});
+		
 		$('#btn-save').on('click', function(event){
 			event.preventDefault();
 			var penjualan = {
@@ -34,12 +49,12 @@
 				url : 'penjualan/save',
 				type: 'POST',
 				beforeSend: function(){
-					console.log(penjualan);
+					//console.log(penjualan);
 				},
 				data: JSON.stringify(penjualan),
 				contentType: 'application/json',
 				success: function(data){
-					console.log(data);
+					window.location = "penjualan";
 				}, error: function(){
 					alert('OPERATION FAILED!!');
 				}
@@ -88,21 +103,23 @@
 		  <table class="table table-dark">
 		<thead>
 			<tr>
-				<td>Name</td>
-				<td>Email</td>
-				<td>Salary</td>
+				<td>no penjualan</td>
+				<td>Total</td>
+				<td>Lokasi</td>
+				<td>Penjual</td>
 				<td>Action</td>
 			</tr>
 		</thead>
 		<tbody>
-		<c:forEach var="emp" items="${employees}">
+		<c:forEach var="p" items="${penjualan}">
 			<tr>
-				<td><c:out value="${emp.name }"/></td>
-				<td><c:out value="${emp.email }"/></td>
-				<td><c:out value="${emp.salary }"/></td>
+				<td><c:out value="${p.noPenjualan }"/></td>
+				<td><c:out value="${p.totalHarga }"/></td>
+				<td><c:out value="${p.location }"/></td>
+				<td><c:out value="${p.employee.name }"/></td>
 				<td>
-					<a class="btn btn-danger delete" id="${emp.id}" href="#">Delete</a>
-					<a class="btn btn-warning update" id="${emp.id}" href="#">Update</a>
+					<a id="${p.id }" class="btn btn-danger delete" id="${emp.id}" href="#">Delete</a>
+					<a id="${p.id }" class="btn btn-warning update" id="${emp.id}" href="#">Update</a>
 				</td>
 			</tr>
 		</c:forEach>

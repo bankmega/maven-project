@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +31,10 @@ public class PenjualanController {
 	@RequestMapping
 	public String index(Model model){
 		List<Employee> employees = employeeService.getAllEmployee();
+		List<Penjualan> penjualan = penjualanService.getAllPenjualan();
 		model.addAttribute("employees", employees);
+		model.addAttribute("penjualan", penjualan);
+		
 		return "penjualan";
 	}
 	
@@ -40,6 +44,13 @@ public class PenjualanController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public void save(@RequestBody Penjualan penjualan){
 		penjualanService.save(penjualan);
+	}
+	
+	@RequestMapping(value="/delete/{id}", 
+						method = RequestMethod.DELETE)
+	@ResponseStatus(HttpStatus.OK)
+	public void delete(@PathVariable int id){
+		penjualanService.delete(id);
 	}
 	
 	
