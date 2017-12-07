@@ -19,6 +19,34 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#btn-save').on('click', function(event){
+			event.preventDefault();
+			var penjualan = {
+				noPenjualan : $('input[name="noPenjualan"]').val(),
+				totalHarga : $('input[name="totalHarga"]').val(),
+				location: $('input[name="location"]').val(),
+			    employee : {
+			    	id : $('#employee').val()
+			    }
+			}
+			
+			$.ajax({
+				url : 'penjualan/save',
+				type: 'POST',
+				beforeSend: function(){
+					console.log(penjualan);
+				},
+				data: JSON.stringify(penjualan),
+				contentType: 'application/json',
+				success: function(data){
+					console.log(data);
+				}, error: function(){
+					alert('OPERATION FAILED!!');
+				}
+			});
+			
+		});
+		
 		
 	});
 </script>
@@ -29,7 +57,7 @@
 			</div>	
 		</c:if>
 		
-		<form action="employee/save" method="POST">
+		<form action="#">
 			  <div class="form-group">
 			  <input type="hidden" name="id" />
 			    <label for="noPenjualan">No Penjualan</label>
@@ -38,7 +66,7 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="totalPenjualan">Total Harga</label>
-			    <input type="text" name="totalPenjualan" class="form-control" id="totalPenjualan" aria-describedby="emailHelp" placeholder="Enter Your Email">
+			    <input type="text" name="totalHarga" class="form-control" id="totalPenjualan" aria-describedby="emailHelp" placeholder="Enter Your Email">
 			    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
 			  </div>
 			  <div class="form-group">
@@ -48,15 +76,13 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="location">Employee</label>
-			  	<select class="form-control" name="employee">
+			  	<select class="form-control" id="employee" name="employee">
 			  		<c:forEach items="${employees }" var="emp">
 			  			<option value="${emp.id }"><c:out value="${emp.name }" /></option>
 			  		</c:forEach>
 			  	</select>
 			  </div>
-			  
-			  
-			  <input type="submit" class="btn btn-primary" value="Save" />
+			  <input type="submit" class="btn btn-primary" id="btn-save" value="Save" />
 		  </form>
 		  <hr/>
 		  <table class="table table-dark">
