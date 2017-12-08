@@ -43,4 +43,11 @@ public class PenjualanDaoImpl implements PenjualanDao{
 		session.flush();
 	}
 
+	public Penjualan getPenjualanById(int id) {
+		// TODO Auto-generated method stub
+		Session session = sessionFactory.getCurrentSession();
+		Penjualan penjualan  = session.get(Penjualan.class, id);
+		return penjualan;
+	}
+
 }

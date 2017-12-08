@@ -12,4 +12,6 @@ public interface PenjualanDao {
 
 	void delete(Penjualan penjualan);
 
+	Penjualan getPenjualanById(int id);
+
 }

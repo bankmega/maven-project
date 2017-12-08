@@ -1,0 +1,46 @@
+<!-- Modal -->
+<div class="modal fade" id="modal-penjualan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Penjualan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="#">
+			  <div class="form-group">
+			  <input type="hidden" name="id" />
+			    <label for="noPenjualanEdit">No Penjualan</label>
+			    <input type="text" name="noPenjualanEdit" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Nomer Penjualan">
+			    <small id="emailHelp" class="form-text text-muted">We'll never share your name with anyone else.</small>
+			  </div>
+			  <div class="form-group">
+			    <label for="totalPenjualanEdit">Total Harga</label>
+			    <input type="text" name="totalHargaEdit" class="form-control" id="totalPenjualan" aria-describedby="emailHelp" placeholder="Enter Your Email">
+			    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+			  </div>
+			  <div class="form-group">
+			    <label for="locationEdit">Lokasi</label>
+			    <input type="text" name="locationEdit" class="form-control" id="inputSalary" aria-describedby="emailHelp" placeholder="Enter Your location">
+			    <small id="emailHelp" class="form-text text-muted">We'll never share your salary with anyone else.</small>
+			  </div>
+			  <div class="form-group">
+			    <label for="location">Employee</label>
+			  	<select class="form-control" id="employeeEdit" name="employeeEdit">
+			  		<c:forEach items="${employees }" var="emp">
+			  			<option value="${emp.id }"><c:out value="${emp.name }" /></option>
+			  		</c:forEach>
+			  	</select>
+			  </div>
+			  <input type="submit" class="btn btn-primary" id="btn-save" value="Save" />
+		  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

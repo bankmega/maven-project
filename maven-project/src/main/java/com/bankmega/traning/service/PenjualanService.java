@@ -33,4 +33,10 @@ public class PenjualanService {
 		penjualanDao.delete(penjualan);
 	}
 
+	public Penjualan getPenjualanById(int id) {
+		// TODO Auto-generated method stub
+		
+		return penjualanDao.getPenjualanById(id);
+	}
+
 }

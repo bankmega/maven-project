@@ -62,7 +62,23 @@
 			
 		});
 		
-		
+		//update modal
+		$('.update').click(function(){
+			var id = $(this).attr('id');
+			$.ajax({
+				url : 'penjualan/get/'+id,
+				type: 'GET',
+				success: function(data){
+					$('input[name="noPenjualanEdit"]').val(data.noPenjualan);
+					$('input[name="totalHargaEdit"]').val(data.totalHarga);
+					$('input[name="locationEdit"]').val(data.location);
+					$('#employeeEdit').val(data.employee.id);
+				},
+				dataType: 'json'
+			});
+			
+			$('#modal-penjualan').modal();
+		});
 	});
 </script>
 	<div class="container">
@@ -126,5 +142,6 @@
 		</tbody>
 	</table>
 	</div>
+	<%@include file="/resources/modal/update-penjualan.html" %>
 </body>
 </html>

@@ -53,10 +53,13 @@ public class PenjualanController {
 		penjualanService.delete(id);
 	}
 	
-	
-	
-	
-	
-	
+	@RequestMapping(value="/get/{id}", method=RequestMethod.GET)
+	@ResponseBody
+	public Penjualan get(@PathVariable int id){
+		//Penjualan penjualan = penjualanService.getPenjualanById(id);
+		//System.out.println("penjualan : "+ penjualan.getNoPenjualan());
+		Penjualan penjualan = penjualanService.getPenjualanById(id);
+		return penjualan;
+	}
 	
 }
