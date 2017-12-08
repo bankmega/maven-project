@@ -73,11 +73,38 @@
 					$('input[name="totalHargaEdit"]').val(data.totalHarga);
 					$('input[name="locationEdit"]').val(data.location);
 					$('#employeeEdit').val(data.employee.id);
+					$('#idEdit').val(data.id);
 				},
 				dataType: 'json'
 			});
 			
 			$('#modal-penjualan').modal();
+		});
+		
+		$('#btn-save-edit').click(function(){
+			var penjualan = {
+					id : $('#idEdit').val(),
+					noPenjualan : $('input[name="noPenjualanEdit"]').val(),
+					totalHarga : $('input[name="totalHargaEdit"]').val(),
+					location: $('input[name="locationEdit"]').val(),
+				    employee : {
+				    	id : $('#employeeEdit').val()
+				    }
+				}
+				
+			$.ajax({
+				url : 'penjualan/save',
+				type: 'POST',
+				data: JSON.stringify(penjualan),
+				contentType: 'application/json',
+				success: function(data){
+					console.log(data);
+					//window.location="penjualan";
+				}, error: function(){
+					alert('update failed!!');
+				}
+			});
+			
 		});
 	});
 </script>

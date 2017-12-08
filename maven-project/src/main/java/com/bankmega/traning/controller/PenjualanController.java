@@ -61,5 +61,4 @@ public class PenjualanController {
 		Penjualan penjualan = penjualanService.getPenjualanById(id);
 		return penjualan;
 	}
-	
 }

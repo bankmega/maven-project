@@ -20,7 +20,7 @@ public class PenjualanDaoImpl implements PenjualanDao{
 	public void save(Penjualan penjualan) {
 		// TODO Auto-generated method stub
 		Session session = sessionFactory.getCurrentSession();
-		session.save(penjualan);
+		session.saveOrUpdate(penjualan);
 		session.flush();
 	}
 
