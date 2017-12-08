@@ -25,6 +25,8 @@
 	 <property name="annotatedClasses">
 			<list>
 				<value>com.bankmega.traning.model.Employee</value>
+				<!-- <value>com.bankmega.traning.model.User</value>
+				<value>com.bankmega.traning.model.Role</value> -->
 				<value>com.bankmega.traning.model.Penjualan</value>
 			</list>
 		</property>

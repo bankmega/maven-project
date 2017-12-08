@@ -20,13 +20,7 @@ public class InitDB {
 	
 	@PostConstruct
 	public void init(){
-		Employee employee = new Employee();
-		employee.setName("danang");
-		employee.setEmail("danang@yahoo.com");
-		employee.setSalary(5000.0);
-		employee.setBirthDate(new Date());
 		
-		//employeeService.save(employee);
 	}
 	
 }
